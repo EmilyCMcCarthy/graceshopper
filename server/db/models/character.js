@@ -1,6 +1,7 @@
 'use strict';
 var Sequelize = require('sequelize');
-var db = require('../index.js');
+var db = require('../db');
+
 
 
 module.exports = db.define('character', {
@@ -51,4 +52,6 @@ module.exports = db.define('character', {
             return this.inventory;
         }
     }
+
 });
+
