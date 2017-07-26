@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-import {logout} from '../store'
-
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
+import { logout } from '../store'
+import { Wrapper, Header, Title, StyledLink, Menu } from './component-styles'
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -12,29 +12,33 @@ import {logout} from '../store'
  */
 const Main = (props) => {
 
-  const {children, handleClick, isLoggedIn} = props;
+  const { children, handleClick, isLoggedIn } = props;
 
   return (
-    <div>
-      <h1>BOILERMAKER</h1>
-      <nav>
+    <Wrapper>
+      <Header>
+        <Title>
+          OUR STORE
+      </Title>
+      </Header>
+      <Menu>
         {
           isLoggedIn ?
             <div>
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
+
               <a href="#" onClick={handleClick}>Logout</a>
             </div> :
             <div>
               {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+              <StyledLink to="/login">Login</StyledLink>
+              <StyledLink to="/signup">Sign Up</StyledLink>
+              <StyledLink to="/search">Search</StyledLink>
             </div>
         }
-      </nav>
-      <hr />
+      </Menu>
       {children}
-    </div>
+    </Wrapper>
   )
 }
 
@@ -49,7 +53,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleClick () {
+    handleClick() {
       dispatch(logout())
     }
   }
