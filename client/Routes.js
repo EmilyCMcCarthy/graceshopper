@@ -4,8 +4,8 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
-import {me} from './store'
+import {Main, Login, Signup, UserHome, AllCharacters} from './components'
+import {me, fetchCharacters} from './store';
 
 /**
  * COMPONENT
@@ -13,12 +13,12 @@ import {me} from './store'
 class Routes extends Component {
 
   componentDidMount () {
-    this.props.loadInitialData()
+    this.props.loadInitialData();
   }
 
   render () {
 
-    const {isLoggedIn} = this.props
+    const {isLoggedIn} = this.props;
 
     return (
       <Router history={history}>
@@ -27,6 +27,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/characters" component={AllCharacters} />
             {
               isLoggedIn ?
                 <Switch>
@@ -57,12 +58,13 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
-      dispatch(me())
+      dispatch(me());
+      dispatch(fetchCharacters());
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(Routes)
+export default connect(mapState, mapDispatch)(Routes);
 
 /**
  * PROP TYPES
