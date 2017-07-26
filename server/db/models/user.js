@@ -9,13 +9,20 @@ const User = db.define('user', {
     allowNull: false
   },
   password: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   salt: {
     type: Sequelize.STRING
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  name: {
+    type: Sequelize.STRING
+  },
+  address: {
+    type: Sequelize.TEXT
   }
 })
 
