@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, AllCharacters} from './components'
+import {Main, Login, Signup, UserHome, AllCharacters, SingleCharacter} from './components'
 import {me, fetchCharacters} from './store';
 
 /**
@@ -28,6 +28,8 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/characters" component={AllCharacters} />
+            <Route path="/characters/:characterId" component={SingleCharacter} />
+
             {
               isLoggedIn ?
                 <Switch>
