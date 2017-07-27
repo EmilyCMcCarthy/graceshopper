@@ -3,6 +3,7 @@ const Cart = require('./cart')
 const CartItems = require('./cartItems')
 
 
+const Character = require('./character.js');
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -22,5 +23,6 @@ Cart.hasMany(CartItems);
 module.exports = {
   User,
   Cart,
-  CartItems
+  CartItems,
+  Character
 }
