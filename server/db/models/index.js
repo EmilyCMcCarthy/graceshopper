@@ -23,6 +23,7 @@ const Character = require('./character.js');
 User.hasMany(Cart);
 Cart.hasMany(CartItems);
 Review.belongsTo(User);
+Review.belongsTo(Character);
 
 module.exports = {
   User,
