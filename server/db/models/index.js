@@ -1,6 +1,7 @@
 const User = require('./user')
 const Cart = require('./cart')
 const CartItems = require('./cartItems')
+const Movie = require('./movie')
 
 
 const Character = require('./character.js');
@@ -24,5 +25,6 @@ module.exports = {
   User,
   Cart,
   CartItems,
-  Character
+  Character,
+  Movie
 }
