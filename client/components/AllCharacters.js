@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { Card, FlexParent, CharacterImg, CardText, Title } from './component-styles'
 
 // export const AllCharacters = (props) => {
 //     console.log("PRINT", props);
@@ -18,39 +18,36 @@ class AllCharacters extends Component {
       price: ''
     };
   }
-  render () {
-      const allCharacters = this.props.allCharacters;
-      console.log("CHARACTERS", this.props);
+  render() {
+    const allCharacters = this.props.allCharacters;
+    console.log("CHARACTERS", this.props);
     return (
-      <div>
-        <h3>Characters</h3>
-        <div className="list-group">
+      <FlexParent>
+        <Title secondary>BROWSE CHARACTERS</Title>
+        <FlexParent>
           {
             allCharacters.map(character => {
               return (
-                <div className="col-lg-6" key={character.id}>
+                <Card key={character.id}>
+                  <CharacterImg src={character.imageUrl} />
+                  <CardText>
+                    <span>{character.name}</span>
 
-                    <img src={ character.imageUrl } />
-                    <div className="caption">
-                      <h5>
-                        <span>{ character.name }</span>
+                    <span>{character.price}</span>
 
-                        <span>{ character.price }</span>
-                      </h5>
-                    </div>
-
-                </div>
+                  </CardText>
+                </Card>
               );
             })
           }
-        </div>
-      </div>
+        </ FlexParent>
+      </FlexParent>
 
     );
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ({allCharacters}) => ({allCharacters});
+const mapStateToProps = ({ allCharacters }) => ({ allCharacters });
 
 export default withRouter(connect(mapStateToProps)(AllCharacters));
 
