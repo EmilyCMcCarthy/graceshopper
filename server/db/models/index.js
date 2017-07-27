@@ -22,6 +22,8 @@ const Character = require('./character.js');
 
 User.hasMany(Cart);
 Cart.hasMany(CartItems);
+Movie.hasMany(Character);
+Character.belongsTo(Movie);
 Review.belongsTo(User);
 Review.belongsTo(Character);
 
