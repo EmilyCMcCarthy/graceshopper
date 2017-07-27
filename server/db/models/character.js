@@ -34,7 +34,7 @@ module.exports = db.define('character', {
         }
     },
     inventory: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING, // EI: should this be an integer?
         allowNull: false,
         validate: {
             notEmpty: true
