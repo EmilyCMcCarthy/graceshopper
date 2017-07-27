@@ -29,7 +29,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/characters" component={AllCharacters} />
+            <Route exact path="/characters" component={AllCharacters} />
             <Route path="/characters/:characterId" component={SingleCharacter} />
 
             {
