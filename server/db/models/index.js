@@ -21,6 +21,9 @@ const Character = require('./character.js');
 
 User.hasMany(Cart);
 Cart.hasMany(CartItems);
+Movie.hasMany(Character);
+Character.belongsTo(Movie);
+
 module.exports = {
   User,
   Cart,
