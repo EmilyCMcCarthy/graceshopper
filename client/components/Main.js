@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
-import { logout } from '../store'
+
+import {connect} from 'react-redux'
+import {withRouter, Link} from 'react-router-dom'
+import {logout} from '../store'
+import AllCharacters from './AllCharacters'
+import SingleCharacter from './SingleCharacter';
+
 import { Wrapper, Header, Title, StyledLink, Menu } from './component-styles'
+
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -36,7 +41,13 @@ const Main = (props) => {
               <StyledLink to="/search">Search</StyledLink>
             </div>
         }
+
+      </nav>
+      <hr />
+
+
       </Menu>
+
       {children}
     </Wrapper>
   )
