@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {fetchCharacter} from '../store';
+import { fetchCharacter } from '../store';
 
 
 class SingleCharacter extends Component {
@@ -16,38 +16,38 @@ class SingleCharacter extends Component {
       rating: ''
     };
   }
-    componentDidMount() {
-       console.log("PRINT", this.props.match.params.characterId)
+  componentDidMount() {
+    console.log("PRINT", this.props.match.params.characterId)
     this.props.loadInitialData(this.props.match.params.characterId)
   }
 
-  render () {
-      const character = this.props.singleCharacter;
+  render() {
+    const character = this.props.singleCharacter;
 
     return (
       <li className="media">
-      <div className="media-left">
-        <a href="#">
-          <img className="media-object" src={ character.imageUrl  } alt="image" />
-        </a>
-      </div>
-      <div className="media-body">
-        <h4 className="media-heading">{  character.name}</h4>
-        <h4>{character.price} </h4>
-         <h4 className="media-heading">{ character.description}</h4>
-      </div>
-    </li>
+        <div className="media-left">
+          <a href="#">
+            <img className="media-object" src={character.imageUrl} alt="image" />
+          </a>
+        </div>
+        <div className="media-body">
+          <h4 className="media-heading">{character.name}</h4>
+          <h4>{character.price} </h4>
+          <h4 className="media-heading">{character.description}</h4>
+        </div>
+      </li>
 
     );
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ({singleCharacter}) => ({singleCharacter});
+const mapStateToProps = ({ singleCharacter }) => ({ singleCharacter });
 const mapDispatchToProps = (dispatch) => {
 
   return {
 
-    loadInitialData (characterId) {
+    loadInitialData(characterId) {
       dispatch(fetchCharacter(characterId));
 
     }
