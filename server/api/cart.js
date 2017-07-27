@@ -9,6 +9,15 @@ if cart is not created:
 if cart is present for user
   push the items to cart
 */
+
+// EI: in general, routes should look like this:
+// /generalCategory/:idForThingInThatCategory
+//
+// a more RESTful route for adding to cart could be:
+// POST /users/:userId/orders/:orderId/orderItems
+// or
+// PUT /users/:userId/orders/:orderId
+
 router.post('/:userId/cartItem', (req, res, next) => {
     Cart.findOrCreate({
       where:{
@@ -41,6 +50,18 @@ when order is clicked: update cart table.
   change status: purchased
   put total
 */
+<<<<<<< HEAD
+=======
+// EI:
+// a more RESTful URL would be:
+// PUT /users/:userId/orders/:orderId/purchase
+// or
+// PUT /orders/:orderId/purchase
+//
+// A good example of a RESTful API is Paypal's:
+// https://developer.paypal.com/docs/api/
+
+>>>>>>> 0e0fd9c6ff1640b8c303b13eb57f96ce4dcd8c87
 router.put('/:userId/purchase', (req, res, next) => {
   Cart.update({
     status: 'purchased',

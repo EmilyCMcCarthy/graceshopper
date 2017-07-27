@@ -9,7 +9,7 @@ const CartItems = db.define('cart_items', {
     type: Sequelize.INTEGER
   },
   subtotal: {
-    type: Sequelize.FLOAT
+    type: Sequelize.FLOAT // EI: make this a getter method
   }
 });
 

@@ -8,7 +8,7 @@ const Character = models.Character;
 
 module.exports = router;
 
-
+// EI: don't forget about query strings!
 router.get('/', function (req, res, next) {
     Character.findAll()
     .then(character => res.json(character))
