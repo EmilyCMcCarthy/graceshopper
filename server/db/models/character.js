@@ -2,8 +2,6 @@
 var Sequelize = require('sequelize');
 var db = require('../db');
 
-
-
 module.exports = db.define('character', {
     name: {
         type: Sequelize.STRING,
@@ -13,28 +11,28 @@ module.exports = db.define('character', {
         }
     },
     price: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: false,
         validate: {
             notEmpty: true
         }
     },
     imageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING, //Sequelize.ARRAY(Sequelize.STRING)
         allowNull: false,
         validate: {
             notEmpty: true
         }
     },
     description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
         validate: {
             notEmpty: true
         }
     },
     inventory: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
             notEmpty: true
