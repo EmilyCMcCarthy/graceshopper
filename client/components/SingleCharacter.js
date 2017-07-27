@@ -18,7 +18,7 @@ class SingleCharacter extends Component {
   }
   componentDidMount() {
     console.log("PRINT", this.props.match.params.characterId)
-    this.props.loadInitialData(this.props.match.params.characterId)
+    this.props.loadSingleCharacter(this.props.match.params.characterId)
   }
 
   render() {
@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
 
-    loadInitialData(characterId) {
+    loadSingleCharacter(characterId) {
       dispatch(fetchCharacter(characterId));
 
     }
