@@ -28,13 +28,13 @@ describe('Character Model Tests', () => {
             describe('validations', () => {
 
                 // *Assertion translation*:
-                // The `email` column should be a required field.
+                // The `name` column should be a required field.
                 it('requires name', () => {
                     const character = Character.build();
-                    return user.validate()
+                    return character.validate()
                         .then(err => {
                             expect(err).to.be.an('object');
-                            expect(err.errors).to.contain.a.thing.with.properties({
+                          expect(err.errors).to.contain.a.thing.with.properties({
                                 path: 'name',
                                 type: 'notNull Violation'
                             });
@@ -45,5 +45,5 @@ describe('Character Model Tests', () => {
 
         });
     });
-});       
+});
 

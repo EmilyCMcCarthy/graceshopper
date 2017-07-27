@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
-import { logout } from '../store'
+
+import {connect} from 'react-redux'
+import {withRouter, Link} from 'react-router-dom'
+import {logout} from '../store'
+import AllCharacters from './AllCharacters'
+import SingleCharacter from './SingleCharacter';
+
 import { Wrapper, Header, Title, StyledLink, Menu } from './component-styles'
+
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -20,23 +25,23 @@ const Main = (props) => {
         <Title>
           OUR STORE
       </Title>
+        <Menu>
+          {
+            isLoggedIn ?
+              <div>
+                {/* The navbar will show these links after you log in */}
+                <a href="#" onClick={handleClick}>Logout</a>
+              </div> :
+              <div>
+                {/* The navbar will show these links before you log in */}
+                <StyledLink to="/login">Login</StyledLink>
+                <StyledLink to="/signup">Sign Up</StyledLink>
+                <StyledLink to="/search">Search</StyledLink>
+              </div>
+          }
+        </Menu>
       </Header>
-      <Menu>
-        {
-          isLoggedIn ?
-            <div>
-              {/* The navbar will show these links after you log in */}
 
-              <a href="#" onClick={handleClick}>Logout</a>
-            </div> :
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <StyledLink to="/login">Login</StyledLink>
-              <StyledLink to="/signup">Sign Up</StyledLink>
-              <StyledLink to="/search">Search</StyledLink>
-            </div>
-        }
-      </Menu>
       {children}
     </Wrapper>
   )

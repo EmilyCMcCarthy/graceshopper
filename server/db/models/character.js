@@ -11,7 +11,7 @@ module.exports = db.define('character', {
         }
     },
     price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
             notEmpty: true

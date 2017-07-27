@@ -20,7 +20,7 @@ module.exports = app
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-if (process.env.NODE_ENV === 'development') require('../secrets')
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') require('../secrets')
 
 
 // passport registration
