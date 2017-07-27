@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Router } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, AllCharacters, SingleCharacter} from './components'
@@ -12,13 +12,15 @@ import {me, fetchCharacters} from './store';
  */
 class Routes extends Component {
 
-  componentDidMount () {
-    this.props.loadInitialData();
+  componentDidMount() {
+    this.props.loadInitialData()
   }
 
-  render () {
+  render() {
 
-    const {isLoggedIn} = this.props;
+
+    const { isLoggedIn } = this.props
+
 
     return (
       <Router history={history}>
@@ -59,9 +61,11 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
+
     loadInitialData () {
       dispatch(me());
       dispatch(fetchCharacters());
+
     }
   }
 }

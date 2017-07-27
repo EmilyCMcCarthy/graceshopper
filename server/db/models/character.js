@@ -3,6 +3,7 @@ var Sequelize = require('sequelize');
 var db = require('../db');
 
 
+
 module.exports = db.define('character', {
     name: {
         type: Sequelize.STRING,
@@ -51,4 +52,6 @@ module.exports = db.define('character', {
             return this.inventory;
         }
     }
+
 });
+
