@@ -1,8 +1,9 @@
 const User = require('./user')
 const Cart = require('./cart')
 const CartItems = require('./cartItems')
-const Movie = require('./movie')
 
+const Review = require('./review')
+const Movie = require('./movie')
 
 const Character = require('./character.js');
 /**
@@ -23,11 +24,14 @@ User.hasMany(Cart);
 Cart.hasMany(CartItems);
 Movie.hasMany(Character);
 Character.belongsTo(Movie);
+Review.belongsTo(User);
+Review.belongsTo(Character);
 
 module.exports = {
   User,
   Cart,
   CartItems,
   Character,
+  Review,
   Movie
 }

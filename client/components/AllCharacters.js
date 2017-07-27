@@ -29,8 +29,8 @@ class AllCharacters extends Component {
             allCharacters.map(character => {
               return (
                 <Card key={character.id}>
-                 <Link to={`/characters/${character.id}`}>
-                  <CharacterImg src={character.imageUrl} />
+                  <Link to={`/characters/${character.id}`}>
+                    <CharacterImg src={character.imageUrl} />
                   </Link>
                   <CardText>
                     <span>{character.name}</span>
