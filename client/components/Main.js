@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
+import { logout } from '../store'
 import AllCharacters from './AllCharacters'
 import SingleCharacter from './SingleCharacter';
 
@@ -36,6 +36,7 @@ const Main = (props) => {
                 {/* The navbar will show these links before you log in */}
                 <StyledLink to="/login">Login</StyledLink>
                 <StyledLink to="/signup">Sign Up</StyledLink>
+                <StyledLink to="/cart">Cart</StyledLink>
                 <StyledLink to="/search">Search</StyledLink>
               </div>
           }
