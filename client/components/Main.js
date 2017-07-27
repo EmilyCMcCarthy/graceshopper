@@ -20,23 +20,23 @@ const Main = (props) => {
         <Title>
           OUR STORE
       </Title>
-      </Header>
-      <Menu>
-        {
-          isLoggedIn ?
-            <div>
-              {/* The navbar will show these links after you log in */}
+        <Menu>
+          {
+            isLoggedIn ?
+              <div>
+                {/* The navbar will show these links after you log in */}
 
-              <a href="#" onClick={handleClick}>Logout</a>
-            </div> :
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <StyledLink to="/login">Login</StyledLink>
-              <StyledLink to="/signup">Sign Up</StyledLink>
-              <StyledLink to="/search">Search</StyledLink>
-            </div>
-        }
-      </Menu>
+                <a href="#" onClick={handleClick}>Logout</a>
+              </div> :
+              <div>
+                {/* The navbar will show these links before you log in */}
+                <StyledLink to="/login">Login</StyledLink>
+                <StyledLink to="/signup">Sign Up</StyledLink>
+                <StyledLink to="/search">Search</StyledLink>
+              </div>
+          }
+        </Menu>
+      </Header>
       {children}
     </Wrapper>
   )
