@@ -42,13 +42,15 @@ router.post('/:userId/orders/current', (req, res, next) => {
     .spread((order) => {
        OrderItems.findOne({
          where:{
-           characterId: req.body.characterId
+           characterId: req.body.characterId,
+           orderId: order.id
          }
        })
        .then((orderItem) => {
          if(orderItem !== null){
            return OrderItems.update({
-             quantity: req.body.quantity + orderItem.quantity
+             quantity: req.body.quantity + orderItem.quantity,
+             subtotal: req.body.subTotal + orderItem.subtotal
            },
           {
             where: {
@@ -70,7 +72,6 @@ router.post('/:userId/orders/current', (req, res, next) => {
        })
     })
     .then( orderItem => {
-      console.log("orderItem: ", orderItem);
       res.send(orderItem);
     })
     .catch(next)
