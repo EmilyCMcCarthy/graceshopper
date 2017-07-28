@@ -31,21 +31,48 @@ if cart is present for user
 // PUT /users/:userId/orders/:orderId
 
 router.post('/:userId/orders/current', (req, res, next) => {
+  console.log("req:", req.body);
+  const userId = Number(req.params.userId);
     Order.findOrCreate({
       where:{
-        userId: req.params.userId,
-        status: 'pending'
+        status: 'pending',
+        userId: userId
       }
     })
-    .spread ((userCart, created) => {
-      OrderItems.create({
-        characterId: req.body.characterId,
-        quantity: req.body.quantity,
-        subtotal: req.body.subtotal,
-        orderId: userCart.id
-      })
+    .spread((order) => {
+       OrderItems.findOne({
+         where:{
+           characterId: req.body.characterId
+         }
+       })
+       .then((orderItem) => {
+         if(orderItem !== null){
+           return OrderItems.update({
+             quantity: req.body.quantity + orderItem.quantity
+           },
+          {
+            where: {
+              characterId: req.body.characterId,
+              id: orderItem.id
+            },
+            returning: true,
+            plain: true
+          });
+         }
+         else{
+           return OrderItems.create({
+             characterId: req.body.characterId,
+             quantity: req.body.quantity,
+             subtotal: req.body.subTotal,
+             orderId: order.id
+           })
+         }
+       })
     })
-    .then( cartItem => res.send(cartItem))
+    .then( orderItem => {
+      console.log("orderItem: ", orderItem);
+      res.send(orderItem);
+    })
     .catch(next)
 })
 
