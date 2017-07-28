@@ -18,7 +18,7 @@ class SingleCharacter extends Component {
   }
     componentDidMount() {
        console.log("PRINT", this.props.match.params.characterId)
-    this.props.loadInitialData(this.props.match.params.characterId)
+    this.props.loadSingleCharacter(this.props.match.params.characterId)
   }
 
   render () {
@@ -34,6 +34,7 @@ class SingleCharacter extends Component {
       <div className="media-body">
         <h4 className="media-heading">{  character.name}</h4>
         <h4>{character.price} </h4>
+        <button className = "btn btn-default btn-xs" onClick= { () => addOrder({}, character.id)} > </button>
          <h4 className="media-heading">{ character.description}</h4>
       </div>
     </li>
@@ -47,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
 
-    loadInitialData (characterId) {
+    loadSingleCharacter (characterId) {
       dispatch(fetchCharacter(characterId));
 
     }
