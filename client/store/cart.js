@@ -24,7 +24,7 @@ export default function reducer (orderItems = [], action) {
 /* ------------   THUNK CREATORS     ------------------ */
 
 export const addOrder = (order, userId) => dispatch => {
-  axios.post(`/${userId}/orders/current`)
+  axios.post(`/api/users/${userId}/orders/current`, order)
        .then(res => dispatch(add(res.data)))
        .catch(err => console.error(`Adding order to user: ${userId} unsuccessful`, err));
 }

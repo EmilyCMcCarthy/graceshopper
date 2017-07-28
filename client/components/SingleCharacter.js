@@ -28,8 +28,8 @@ class SingleCharacter extends Component {
       quantity: this.state.quantity,
       subTotal: this.state.quantity * character.price
     }
-    console.log(order)
-     this.props.addOrder(order, character.id)
+
+     this.props.addOrder(order, this.props.user.id)
   }
 
   handleQuantity(evt) {
@@ -73,13 +73,14 @@ class SingleCharacter extends Component {
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ({singleCharacter}) => ({singleCharacter});
+const mapStateToProps = ({singleCharacter, user}) => ({singleCharacter, user});
 const mapDispatchToProps = (dispatch) => {
   return {
     loadSingleCharacter (characterId) {
       dispatch(fetchCharacter(characterId));
     },
     addOrder(order, userId){
+      console.log("order",order);
       dispatch(addOrder(order, userId));
     }
   }
