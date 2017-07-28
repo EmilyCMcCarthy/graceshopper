@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 // Rename this model to be Order/'order'
-const Cart = db.define('cart', {
+const Order = db.define('order', {
   status: {
     type: Sequelize.ENUM('pending', 'purchased')
   },
@@ -11,4 +11,4 @@ const Cart = db.define('cart', {
   }
 });
 
-module.exports = Cart;
+module.exports = Order;

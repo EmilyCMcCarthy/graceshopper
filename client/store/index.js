@@ -4,9 +4,10 @@ import thunkMiddleware from 'redux-thunk';
 import user from './user';
 import allCharacters from './allCharacters';
 import singleCharacter from './singleCharacter';
+import cart from './cart';
 
 
-const reducer = combineReducers({user, allCharacters, singleCharacter});
+const reducer = combineReducers({user, allCharacters, singleCharacter, cart});
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}));
 const store = createStore(reducer, middleware);
 
@@ -14,3 +15,4 @@ export default store;
 export * from './user';
 export * from './allCharacters';
 export * from './singleCharacter';
+export * from './cart';
