@@ -49,7 +49,6 @@ const mapDispatchToProps = (dispatch) => {
 
     loadSingleCharacter(characterId) {
       dispatch(fetchCharacter(characterId));
-
     }
   }
 }
