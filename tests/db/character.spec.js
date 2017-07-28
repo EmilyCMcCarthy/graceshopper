@@ -1,5 +1,7 @@
-import db from '../../server/db';
+
+import db from '../../server/db/db';
 const Character = db.model('character');
+var Sequelize = require('sequelize');
 
 import chai from 'chai';
 import chaiProperties from 'chai-properties';
@@ -7,42 +9,64 @@ import chaiThings from 'chai-things';
 chai.use(chaiProperties);
 chai.use(chaiThings);
 const expect = chai.expect;
+const Promise = require('bluebird');
 
 describe('Character Model Tests', () => {
 
     beforeEach('Synchronize and clear database', () => db.sync({force: true}));
 
-    after('Synchronize and clear database', () => db.sync({force: true}));
 
     describe('Sequelize models', function () {
 
         describe('Character Model', () => {
+             var CharacterData = {name: "Albus Dumbledore",
+            price: 100,
+            imageUrl: "./characters/albus.jpg",
+            description: "Be Dumbledore. Live in the magical world of Harry Potter... Be the headmaster at Hogwarts",
+            inventory: 15
+            };
 
-            // *Assertion translation*:
-            // This assertion expects that the Character model will
-            // put an `email` column in the users table.
+            
             it('has the expected schema definition', () => {
                 expect(Character.attributes.name).to.be.an('object');
+               
             });
 
-            describe('validations', () => {
+            it('can create a character', () => {
+                return Character.create(CharacterData)
+                .then(function (savedCharacter){
+                    expect(savedCharacter.price).to.equal(100);
+                    expect(savedCharacter.imageUrl).to.equal("./characters/albus.jpg");
+                    expect(savedCharacter.name).to.equal('Albus Dumbledore');
+                    expect(savedCharacter.description).to.equal("Be Dumbledore. Live in the magical world of Harry Potter... Be the headmaster at Hogwarts");
+                    expect(savedCharacter.inventory).to.equal(15);
+                })
+            })
+            it('Instance method can reduce inventory', () => {
+                 return Character.create(CharacterData)
+                .then(function (savedCharacter){
+                    expect(savedCharacter.inventory).to.equal(15);
+                    savedCharacter.decreaseInventory(1);
+                    expect(savedCharacter.inventory).to.equal(14);
+                })
+            })
 
-                // *Assertion translation*:
-                // The `name` column should be a required field.
-                it('requires name', () => {
-                    const character = Character.build();
-                    return character.validate()
-                        .then(err => {
-                            expect(err).to.be.an('object');
-                          expect(err.errors).to.contain.a.thing.with.properties({
-                                path: 'name',
-                                type: 'notNull Violation'
-                            });
-                        });
-                });
+            it('Instance method will not reduce inventory if you ask to remove too many', () => {
+                 return Character.create(CharacterData)
+                .then(function (savedCharacter){
+                    expect(savedCharacter.inventory).to.equal(15);
+                    expect(savedCharacter.decreaseInventory(16)).to.be.an.instanceOf(Error);
+                })
+            })
 
-            });
-
+            it('Instance method increaseInventroy increase inventory', () => {
+                 return Character.create(CharacterData)
+                 .then(function (savedCharacter){
+                    expect(savedCharacter.inventory).to.equal(15);
+                    savedCharacter.increaseInventory(5);
+                    expect(savedCharacter.inventory).to.equal(20);
+                })
+            })
         });
     });
 });
