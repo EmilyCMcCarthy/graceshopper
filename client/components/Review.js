@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card, FlexParent,  CardText, Title } from './component-styles'
-
+import { fetchAllReviews, addNewReview } from '../store';
 
 
 class Review extends Component {
@@ -17,6 +17,10 @@ class Review extends Component {
     this.handleChangeRating = this.handleChangeRating.bind(this);
     this.handleChangeContent = this.handleChangeContent.bind(this);
   }
+componentDidMount() {
+    this.props.loadAllReviews();
+  }
+
 
   handleChangeContent (event) {
     this.setState({ content: event.target.value });
@@ -41,31 +45,30 @@ class Review extends Component {
 
   render () {
     const reviews = this.props.reviews;
-console.log("CHARACTERS", this.props.reviews);
+console.log("riviews", this.props.reviews);
 
     return (
-    // <div>
-    //    <h2>All Riviews</h2>
-    //    <FlexParent>
-    //     <Title secondary>BROWSE CHARACTERS</Title>
-    //     <FlexParent>
-    //       {
-    //         reviews.map(review => {
-    //           return (
-    //             <Card key={review.id}>
+    <div>
+       <h2>All Riviews</h2>
+       <FlexParent>
 
-    //               <CardText>
-    //                 <span>{review.content}</span>
+          {
+           reviews && reviews.map(review => {
+              return (
+                <Card key={review.id}>
 
-    //                 <span>{review.rating}</span>
+                  <CardText>
+                    <span>{review.content}</span>
 
-    //               </CardText>
-    //             </Card>
-    //           );
-    //         })
-    //       }
-    //     </FlexParent>
-    //   </FlexParent>
+                    <span>{review.rating}</span>
+
+                  </CardText>
+                </Card>
+              );
+            })
+          }
+
+      </FlexParent>
       <form className="review" onSubmit={this.handleSubmit}>
         <h4>Write your review</h4>
 
@@ -78,13 +81,31 @@ console.log("CHARACTERS", this.props.reviews);
           </div>
         <button type="submit" className="btn btn-success"> Submit </button>
       </form>
-    //    </div>
+       </div>
     );
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ({reviews}) => ({reviews});
+// const mapStateToProps = ({reviews}) => ({reviews});
 
-export default withRouter(connect(mapStateToProps)(Review));
+// export default withRouter(connect(mapStateToProps)(Review));
 
 // export default Review;
+
+
+const mapStateToProps = ({riviews, user}) => ({riviews, user});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+loadAllReviews ()
+ {
+      dispatch(fetchAllReviews());
+    },
+   addNewReview(review, userId){
+      console.log("order", review);
+      dispatch(addNewReview(review, userId));
+
+  }
+}
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Review));

@@ -22,7 +22,7 @@ class SingleCharacter extends Component {
   }
 
   handleSubmit(evt){
-    const character = this.props.singleCharacter
+    const character = this.props.singleCharacter;
     const order = {
       characterId: character.id,
       quantity: this.state.quantity,

@@ -32,7 +32,7 @@ router.get('/:characterId/reviews', (req, res, next) => {
 
 });
 
-router.post('/:characterId/reviews', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	Review.create({
         content: req.body.content,
         rating: req.body.rating,

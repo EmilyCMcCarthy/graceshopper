@@ -65,7 +65,7 @@ export default function reducer(state = initialState, action) {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchAllReviews = () => dispatch => {
-axios.get('/api/characters')
+axios.get('/api/reviews')
        .then(res => {
            dispatch(getAllReviews(res.data));
        });
@@ -79,8 +79,8 @@ export const getOneReview = (id) => dispatch => {
 }
 
 // not sure
-export const addNewReview = (review, characterId) => (dispatch) => {
-      axios.post(`/api/characters/${characterId}/reviews`, review)
+export const addNewReview = (review) => (dispatch) => {
+      axios.post(`/api/reviews`, review)
         .then(res => dispatch(addReview(res.data)))
         .catch(err => console.error('Adding review unsuccesful', err));
  };
