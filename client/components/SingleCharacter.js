@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCharacter, addOrder, addGuestOrder } from '../store';
 import { FlexParent, CharacterImg, CharacterDetails, CharacterTitle, QtyButton, Qty } from './component-styles'
+import { fetchCharacter, addOrder, addGuestOrder } from '../store';
+import Review from './Review';
+
 
 class SingleCharacter extends Component {
   constructor(props) {
@@ -23,7 +26,7 @@ class SingleCharacter extends Component {
   }
 
   handleSubmit(evt) {
-    const character = this.props.singleCharacter
+    const character = this.props.singleCharacter;
     const order = {
       characterId: character.id,
       quantity: this.state.quantity,
