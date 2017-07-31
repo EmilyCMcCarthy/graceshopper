@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {fetchCharacter, addOrder} from '../store';
+import {fetchCharacter, addOrder, addGuestOrder} from '../store';
 import Review from './Review';
+
 
 class SingleCharacter extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class SingleCharacter extends Component {
 
   componentDidMount() {
     this.props.loadSingleCharacter(this.props.match.params.characterId)
+
   }
 
   handleSubmit(evt){
@@ -28,9 +30,18 @@ class SingleCharacter extends Component {
       quantity: this.state.quantity,
       subTotal: this.state.quantity * character.price
     }
-
-     this.props.addOrder(order, this.props.user.id)
+     this.props.user.id
+     ? this.props.addOrder(order, this.props.user.id)
+     : this.props.addGuestOrder(order)
   }
+
+  /*
+  1. fetchGuestOrder return me []
+      Empty for the first time
+      Elements not first time
+  2. addGuestOrder
+  */
+
 
   handleQuantity(evt) {
 
@@ -65,7 +76,7 @@ class SingleCharacter extends Component {
         <div id="quantity">
           {this.state.quantity}</div>
         <button className="btn btn-default btn-xs" name ="increase"  onClick={this.handleQuantity} disabled= {this.state.increaseEnabled} > + </button>
-        <button className = "btn btn-default btn-xs" onClick= {this.handleSubmit} > </button>
+        <button className = "btn btn-default btn-xs" type= "submit" name= "Buy" onClick= {this.handleSubmit} > </button>
          <h4 className="media-heading">{ character.description}</h4>
          <Review reviews={this.props.reviews} characterId={character.id} />
       </div>
@@ -75,7 +86,7 @@ class SingleCharacter extends Component {
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ({singleCharacter, user}) => ({singleCharacter, user});
+const mapStateToProps = ({singleCharacter, user, guestUser}) => ({singleCharacter, user, guestUser});
 const mapDispatchToProps = (dispatch) => {
   return {
     loadSingleCharacter (characterId) {
@@ -84,6 +95,9 @@ const mapDispatchToProps = (dispatch) => {
     addOrder(order, userId){
       console.log("order",order);
       dispatch(addOrder(order, userId));
+    },
+    addGuestOrder(order){
+      dispatch(addGuestOrder(order))
     }
   }
 }

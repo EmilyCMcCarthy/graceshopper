@@ -53,25 +53,24 @@ componentDidMount() {
 
   render () {
     const reviews = this.props.reviews;
-     const characterId =this.props.characterId;
-console.log("RATING", this.handleChangeRating);
+    const characterId =this.props.characterId;
+
 
     return (
     <div className="list-group">
-       <h2>All Riviews</h2>
-
-
+       <h2>All Reviews</h2>
           {
-           reviews.filter((oneReview) => { console.log("PRINT", oneReview, "ID",characterId); return  characterId === oneReview.characterId }).map((review, i) => {
-              return (
-                <div className="col-lg-6" key={i}>
-                    <h5>By<span> {review.user.email}</span>
-                    <span> on {review.createdAt} </span>
-                    </h5>
-                    <h5>{review.content}</h5>
-                    <h5> Rating {review.rating} of 5 stars </h5>
+           reviews.filter((oneReview) => {
+                return  characterId === oneReview.characterId }).map((review, i) => {
+                    return (
+                        <div className="col-lg-6" key={i}>
+                            <h5>By<span> {review.user.email}</span>
+                            <span> on {review.createdAt} </span>
+                            </h5>
+                            <h5>{review.content}</h5>
+                            <h5> Rating {review.rating} of 5 stars </h5>
 
-                </div>
+                        </div>
 
               );
             })
@@ -84,10 +83,10 @@ console.log("RATING", this.handleChangeRating);
             <fieldset className="rating">
                 <legend>Please rate:</legend>
                 <input type="radio" id="star5" name="rating" value="5" /><label htmlFor="star5" title="Rocks!" onClick={() => this.handleChangeRating(5)}>5 stars</label>
-                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good" onClick={() => this.handleChangeRating(4)}>4 stars</label>
-                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh" onClick={() => this.handleChangeRating(3)}>3 stars</label>
-                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad" onClick={() => this.handleChangeRating(2)}>2 stars</label>
-                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time" onClick={() => this.handleChangeRating(1)}>1 star</label>
+                <input type="radio" id="star4" name="rating" value="4" /><label htmlFor="star4" title="Pretty good" onClick={() => this.handleChangeRating(4)}>4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3" /><label htmlFor="star3" title="Meh" onClick={() => this.handleChangeRating(3)}>3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2" /><label htmlFor="star2" title="Kinda bad" onClick={() => this.handleChangeRating(2)}>2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1" /><label htmlFor="star1" title="Sucks big time" onClick={() => this.handleChangeRating(1)}>1 star</label>
             </fieldset>
           <div className="form-group">
             <textarea cols="50" rows="6" name="comment" onChange={this.handleChangeContent}></textarea>
