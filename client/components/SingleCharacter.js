@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCharacter, addOrder, addGuestOrder } from '../store';
 import { FlexParent, CharacterImg, CharacterDetails, CharacterTitle, QtyButton, Qty } from './component-styles'
-import { fetchCharacter, addOrder, addGuestOrder } from '../store';
 import Review from './Review';
 
 
