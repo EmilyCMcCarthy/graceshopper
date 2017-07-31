@@ -46,12 +46,44 @@ export const FlexParent = styled.div`
   display: flex;
   flex-direction: ${props => props.column ? 'column' : 'row'};
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: ${props => props.center ? 'center' : 'space-around'};
 `
 export const CharacterImg = styled.img`
-width: 225px;
-height: 275px;
+  width: ${props => props.fullsize ? '425px' : '225px'};
+  height: ${props => props.fullsize ? '500px' : '275px'};
+  margin: ${props => props.fullsize ? '40px' : '0px'};
 `
+export const CharacterDetails = styled.div`
+  padding: 40px;
+  max-width: 400px;
+`
+export const CharacterTitle = styled.h1`
+  font-size: ${props => props.secondary ? '25px' : '35px'};
+  letter-spacing: 4px;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+`
+export const QtyButton = styled.button`
+  display: ${props => props.block ? 'block' : 'inline'};
+  border: 1px solid black;
+  background: white;
+  padding: 6px 10px;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: ${props => props.block ? '25px 5px' : '5px'};
+    &:hover{
+    color: white;
+    background: #0E121B;
+  }
+`
+export const Qty = styled.span`
+display:inline;
+font-size: 16px;
+`
+
 export const CardText = styled.div`
   padding: 10px;
   display: flex;
