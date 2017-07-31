@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card, FlexParent, CharacterImg, CardText, Title } from './component-styles'
-
+import AllCategories from './AllCategories';
 // export const AllCharacters = (props) => {
 //     console.log("PRINT", props);
 //     return (<h1> hi </h1>)
@@ -24,6 +24,7 @@ class AllCharacters extends Component {
     return (
       <FlexParent>
         <Title secondary>BROWSE CHARACTERS</Title>
+        <AllCategories />
         <FlexParent>
           {
             allCharacters.map(character => {

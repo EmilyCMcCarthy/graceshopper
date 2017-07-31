@@ -6,6 +6,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import AllCharacters from './AllCharacters'
 import SingleCharacter from './SingleCharacter';
+import AllCategories from './AllCategories';
 
 import { Wrapper, Header, Title, StyledLink, Menu } from './component-styles'
 

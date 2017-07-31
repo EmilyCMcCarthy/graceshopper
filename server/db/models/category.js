@@ -6,6 +6,10 @@ const Category = db.define('category', {
     tag: {
         type: Sequelize.STRING,
     }
+    }, {
+        scopes: {
+            
+        }
     });
 
 module.exports = Category;

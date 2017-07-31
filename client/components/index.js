@@ -8,3 +8,5 @@ export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form';
 export {default as AllCharacters} from './AllCharacters';
 export {default as SingleCharacter} from './SingleCharacter';
+export {default as AllCategories} from './AllCategories';
+export {default as FilteredCharacters } from './FilteredCharacters';

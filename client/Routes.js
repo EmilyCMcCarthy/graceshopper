@@ -4,8 +4,8 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, AllCharacters, SingleCharacter} from './components'
-import {me, fetchCharacters} from './store';
+import {Main, Login, Signup, UserHome, AllCharacters, SingleCharacter, AllCategories, SingleCategory, FilteredCharacters} from './components'
+import {me, fetchCharacters, fetchCategories} from './store';
 
 /**
  * COMPONENT
@@ -30,7 +30,9 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/" component={AllCharacters} />
-            <Route path="/characters/:characterId" component={SingleCharacter} />
+            <Route exact path="/categories" component={AllCategories} />
+            <Route path="/filteredCharacters" component={FilteredCharacters} />
+            <Route path="/characters/:characterId" component={SingleCharacter} /> 
 
             {
               isLoggedIn ?
@@ -65,6 +67,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me());
       dispatch(fetchCharacters());
+      dispatch(fetchCategories());
 
     }
   }

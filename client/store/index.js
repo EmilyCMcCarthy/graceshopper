@@ -7,9 +7,10 @@ import singleCharacter from './singleCharacter';
 import cart from './cart';
 import allCategories from './allCategories';
 import singleCategory from './singleCategory';
+import filteredCharacters from './filteredCharacters.js';
+import searchTerms from './searchTerms.js';
 
-
-const reducer = combineReducers({user, allCharacters, singleCharacter, cart});
+const reducer = combineReducers({user, allCharacters, singleCharacter, cart, allCategories, singleCategory, searchTerms});
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}));
 const store = createStore(reducer, middleware);
 
@@ -20,3 +21,4 @@ export * from './singleCharacter';
 export * from './cart';
 export * from './allCategories';
 export * from './singleCategory';
+export * from './searchTerms';
