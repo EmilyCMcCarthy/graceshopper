@@ -30,10 +30,14 @@ const Main = (props) => {
             isLoggedIn ?
               <div>
                 {/* The navbar will show these links after you log in */}
-                <a href="#" onClick={handleClick}>Logout</a>
+                <StyledLink to="/">Home</StyledLink>
+                <StyledLink to="/cart">Cart</StyledLink>
+                <StyledLink to="/search">Search</StyledLink>
+                <StyledLink to="/" onClick={handleClick}>Logout</StyledLink>
               </div> :
               <div>
                 {/* The navbar will show these links before you log in */}
+                <StyledLink to="/">Home</StyledLink>
                 <StyledLink to="/login">Login</StyledLink>
                 <StyledLink to="/signup">Sign Up</StyledLink>
                 <StyledLink to="/cart">Cart</StyledLink>
