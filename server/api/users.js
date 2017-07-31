@@ -31,7 +31,7 @@ if cart is present for user
 // PUT /users/:userId/orders/:orderId
 
 router.post('/:userId/orders/current', (req, res, next) => {
-  console.log("req:", req.body);
+
   const userId = Number(req.params.userId);
     Order.findOrCreate({
       where:{
@@ -40,6 +40,11 @@ router.post('/:userId/orders/current', (req, res, next) => {
       }
     })
     .spread((order) => {
+      /*
+      Check if a orderItem for a particular order exists:
+        yes: update price and qty
+        no: create orderItem
+      */
        OrderItems.findOne({
          where:{
            characterId: req.body.characterId,
