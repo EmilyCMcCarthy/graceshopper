@@ -18,6 +18,7 @@ class Review extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeRating = this.handleChangeRating.bind(this);
     this.handleChangeContent = this.handleChangeContent.bind(this);
+
   }
 componentDidMount() {
     this.props.loadAllReviews();
@@ -52,7 +53,7 @@ componentDidMount() {
 
   render () {
     const reviews = this.props.reviews;
-
+     const characterId =this.props.characterId;
 console.log("RATING", this.handleChangeRating);
 
     return (
@@ -61,7 +62,7 @@ console.log("RATING", this.handleChangeRating);
 
 
           {
-           reviews.map((review, i) => {
+           reviews.filter((oneReview) => { console.log("PRINT", oneReview, "ID",characterId); return  characterId === oneReview.characterId }).map((review, i) => {
               return (
                 <div className="col-lg-6" key={i}>
                     <h5>By<span> {review.user.email}</span>
@@ -82,7 +83,7 @@ console.log("RATING", this.handleChangeRating);
          <h5>Rating</h5>
             <fieldset className="rating">
                 <legend>Please rate:</legend>
-                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!" onClick={() => this.handleChangeRating(5)}>5 stars</label>
+                <input type="radio" id="star5" name="rating" value="5" /><label htmlFor="star5" title="Rocks!" onClick={() => this.handleChangeRating(5)}>5 stars</label>
                 <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good" onClick={() => this.handleChangeRating(4)}>4 stars</label>
                 <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh" onClick={() => this.handleChangeRating(3)}>3 stars</label>
                 <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad" onClick={() => this.handleChangeRating(2)}>2 stars</label>

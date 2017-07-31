@@ -3,6 +3,7 @@ const router = express.Router();
 const models = require('../db/models');
 const Review = models.Review;
 const User = models.User;
+const Character = models.Character;
 
 // router.get('/', (req, res, next) => {
 //  Review.findAll({})
@@ -38,15 +39,21 @@ router.get('/:reviewId', (req, res, next) => {
 });
 
 
-router.get('/:characterId/reviews', (req, res, next) => {
+router.get('/:characterId', (req, res, next) => {
     const characterId = req.params.characterId;
 
         Review.findAll({
             where: {
               characterId
-            }
+            },
+            include: {
+            model: Character,
+             as: 'character'
+      }
     })
-       .then(review => {res.send(review);
+       .then(review => {  console.log("FROM PROMIS", review )
+       res.send(review);
+
             })
        .catch(next);
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {fetchCharacter, addOrder} from '../store';
-
+import Review from './Review';
 
 class SingleCharacter extends Component {
   constructor(props) {
@@ -50,6 +50,7 @@ class SingleCharacter extends Component {
 
   render () {
       const character = this.props.singleCharacter;
+      console.log("CHARACTER", character.id)
     return (
       <li className="media">
       <div className="media-left">
@@ -66,6 +67,7 @@ class SingleCharacter extends Component {
         <button className="btn btn-default btn-xs" name ="increase"  onClick={this.handleQuantity} disabled= {this.state.increaseEnabled} > + </button>
         <button className = "btn btn-default btn-xs" onClick= {this.handleSubmit} > </button>
          <h4 className="media-heading">{ character.description}</h4>
+         <Review reviews={this.props.reviews} characterId={character.id} />
       </div>
     </li>
 
