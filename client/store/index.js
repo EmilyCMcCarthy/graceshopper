@@ -8,8 +8,9 @@ import cart from './cart';
 import guestCart from './guestCart';
 import allCategories from './allCategories';
 import singleCategory from './singleCategory';
+import reviews from './reviews';
 
-const reducer = combineReducers({user, allCharacters, singleCharacter, cart, guestCart});
+const reducer = combineReducers({user, allCharacters, singleCharacter, cart, guestCart, reviews});
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}));
 const store = createStore(reducer, middleware);
 
@@ -19,5 +20,6 @@ export * from './allCharacters';
 export * from './singleCharacter';
 export * from './cart';
 export * from './guestCart';
+export * from './reviews';
 export * from './allCategories';
 export * from './singleCategory';
