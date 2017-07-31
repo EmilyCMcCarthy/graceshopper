@@ -64,11 +64,12 @@ class SingleCharacter extends Component {
           <h4 className="media-heading">{character.description}</h4>
           <QtyButton className="btn btn-default btn-xs" name="decrease" onClick={this.handleQuantity} disabled={this.state.decreaseEnabled} > - </QtyButton>
           <Qty>
-            Qty: ({this.state.quantity}) 30min portal{this.state.quantity !== 1 ? 's' : '  '}</Qty>
+            Qty: ({this.state.quantity}) 30min portal{this.state.quantity !== 1 ? 's' : '  '}
+          </Qty>
           <QtyButton className="btn btn-default btn-xs" name="increase" onClick={this.handleQuantity} disabled={this.state.increaseEnabled} > + </QtyButton>
 
 
-          <QtyButton block className="btn btn-default btn-xs" type="submit" name="AddToCart" onClick={this.handleSubmit} >Add to Cart</QtyButton>
+          <QtyButton block className="btn btn-default btn-xs" type="submit" name="AddToCart" onClick={this.handleSubmit}>Add to Cart</QtyButton>
 
         </CharacterDetails>
       </FlexParent >
