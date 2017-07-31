@@ -22,9 +22,7 @@ const Character = db.define('character', {
     imageUrl: {
         type: Sequelize.STRING, //Sequelize.ARRAY(Sequelize.STRING)
         allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+        defaultValue: 'No Image'
     },
     description: {
         type: Sequelize.TEXT,
@@ -33,6 +31,9 @@ const Character = db.define('character', {
             notEmpty: true
         }
     },
+    //  status: {
+    //     type: Sequelize.ENUM('available', 'unavailable')
+    // },
     inventory: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -52,7 +53,7 @@ Character.prototype.decreaseInventory = function(num) {
                 this.inventory = this.inventory - num;
                 return this.inventory;
             }
-            
+
 };
 
 Character.prototype.increaseInventory = function(num) {
