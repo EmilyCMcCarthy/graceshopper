@@ -20,7 +20,6 @@ class AllCharacters extends Component {
   }
   render() {
     const allCharacters = this.props.allCharacters;
-    console.log("CHARACTERS", this.props);
     return (
       <FlexParent>
         <Title secondary>BROWSE CHARACTERS</Title>

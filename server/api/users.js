@@ -53,7 +53,7 @@ router.post('/:userId/orders/current', (req, res, next) => {
        })
        .then((orderItem) => {
          if(orderItem !== null){
-           return OrderItems.update({
+          OrderItems.update({
              quantity: req.body.quantity + orderItem.quantity,
              subtotal: req.body.subTotal + orderItem.subtotal
            },
@@ -64,24 +64,48 @@ router.post('/:userId/orders/current', (req, res, next) => {
             },
             returning: true,
             plain: true
-          });
+          })
+          .then(updatedItem => res.send(updatedItem));
          }
-         else{
-           return OrderItems.create({
+         else {
+           OrderItems.create({
              characterId: req.body.characterId,
              quantity: req.body.quantity,
              subtotal: req.body.subTotal,
              orderId: order.id
            })
+          .then(createdOrderItem => res.send(createdOrderItem));
          }
        })
-    })
-    .then( orderItem => {
-      res.send(orderItem);
     })
     .catch(next)
 })
 
+
+/*
+Get all user orderItems(Cart Items)
+*/
+router.get('/:userId/orders/', function (req, res, next) {
+  Order.findOne(
+    {
+      where:{
+        status: 'pending',
+        userId: req.params.userId
+      }
+  })
+  .then( order => {
+    return OrderItems.findAll({
+      where: {
+        orderId: order.id
+      }
+    })
+  })
+  .then(orderItems => {
+    console.log("user order items: ", orderItems);
+    res.send(orderItems)
+  })
+  .catch(next);
+});
 
 /*
 when checkout is clicked

@@ -23,6 +23,7 @@ class SingleCharacter extends Component {
   }
 
   handleSubmit(evt){
+    evt.preventDefault();
     const character = this.props.singleCharacter
     const order = {
       characterId: character.id,
@@ -34,16 +35,7 @@ class SingleCharacter extends Component {
      : this.props.addGuestOrder(order)
   }
 
-  /*
-  1. fetchGuestOrder return me []
-      Empty for the first time
-      Elements not first time
-  2. addGuestOrder
-  */
-
-
   handleQuantity(evt) {
-
     if(evt.target.name === "increase"){
      this.setState({quantity: ++this.state.quantity});
     } else {
@@ -83,14 +75,13 @@ class SingleCharacter extends Component {
   }
 }
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ({singleCharacter, user, guestUser}) => ({singleCharacter, user, guestUser});
+const mapStateToProps = ({singleCharacter, user, guestCart}) => ({singleCharacter, user, guestCart});
 const mapDispatchToProps = (dispatch) => {
   return {
     loadSingleCharacter (characterId) {
       dispatch(fetchCharacter(characterId));
     },
     addOrder(order, userId){
-      console.log("order",order);
       dispatch(addOrder(order, userId));
     },
     addGuestOrder(order){
