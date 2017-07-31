@@ -5,6 +5,8 @@ import user from './user';
 import allCharacters from './allCharacters';
 import singleCharacter from './singleCharacter';
 import cart from './cart';
+import allCategories from './allCategories';
+import singleCategory from './singleCategory';
 
 
 const reducer = combineReducers({user, allCharacters, singleCharacter, cart});
@@ -16,3 +18,5 @@ export * from './user';
 export * from './allCharacters';
 export * from './singleCharacter';
 export * from './cart';
+export * from './allCategories';
+export * from './singleCategory';
