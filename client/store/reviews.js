@@ -35,40 +35,41 @@ export function deleteReview(id) {
 
 /* ------------       REDUCERS     ------------------ */
 
-const initialState = {
-  review: {},
-  reviews: []
-};
 
-export default function reducer(state = initialState, action) {
+
+export default function reducer(state = [], action) {
     let newState = Object.assign({}, state);
   switch (action.type) {
 
     case GET_ALL_REVIEWS:
       newState = action.reviews;
-      break;
+      return newState;
+
     case GET_REVIEW:
       newState = action.review;
-      break;
+      return [...state, action.review];
     case ADD_REVIEW:
       newState = [...state, action.review];
-      break;
+      return newState;
     case DELETE_REVIEW:
      newState = state.filter(review => review.id !== action.id);
-      break;
+      return newState;
     default:
       return state;
   }
-    return newState;
+
 }
 
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchAllReviews = () => dispatch => {
+
 axios.get('/api/reviews')
        .then(res => {
+           console.log("geAll", res.data);
            dispatch(getAllReviews(res.data));
-       });
+       })
+      .catch(err => console.error(err));
 };
 
 export const getOneReview = (id) => dispatch => {
@@ -81,7 +82,7 @@ export const getOneReview = (id) => dispatch => {
 // not sure
 export const addNewReview = (review) => (dispatch) => {
       axios.post(`/api/reviews`, review)
-        .then(res => dispatch(addReview(res.data)))
+        .then(res => dispatch(fetchAllReviews()))
         .catch(err => console.error('Adding review unsuccesful', err));
  };
 

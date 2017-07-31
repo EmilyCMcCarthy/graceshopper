@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Card, FlexParent,  CardText, Title } from './component-styles'
 import { fetchAllReviews, addNewReview } from '../store';
 
 
@@ -11,7 +10,10 @@ class Review extends Component {
 
     this.state = {
       content: '',
-      rating: 1
+      rating: 1,
+
+
+
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeRating = this.handleChangeRating.bind(this);
@@ -26,8 +28,9 @@ componentDidMount() {
     this.setState({ content: event.target.value });
   }
 
-  handleChangeRating (event) {
-    this.setState({ rating: event.target.value });
+  handleChangeRating (rating) {
+      console.log("EVENT", rating)
+    this.setState({ rating: rating});
   }
 
 
@@ -36,46 +39,55 @@ componentDidMount() {
 
     const review = {
       content: this.state.content,
-      rating: this.state.rating
+      rating: this.state.rating,
+      userId: this.props.user.id || 1,
+      characterId: this.props.characterId || 1
+      //1 is defauld user Id
+
     }
-    this.props.addNewReview(review, this.props.user.id)
+    this.props.addNewReview(review)
 
 
   }
 
   render () {
     const reviews = this.props.reviews;
-console.log("riviews", this.props.reviews);
+
+console.log("RATING", this.handleChangeRating);
 
     return (
-    <div>
+    <div className="list-group">
        <h2>All Riviews</h2>
-       <FlexParent>
+
 
           {
-           reviews && reviews.map(review => {
+           reviews.map((review, i) => {
               return (
-                <Card key={review.id}>
+                <div className="col-lg-6" key={i}>
+                    <h5>By<span> {review.user.email}</span>
+                    <span> on {review.createdAt} </span>
+                    </h5>
+                    <h5>{review.content}</h5>
+                    <h5> Rating {review.rating} of 5 stars </h5>
 
-                  <CardText>
-                    <span>{review.content}</span>
+                </div>
 
-                    <span>{review.rating}</span>
-
-                  </CardText>
-                </Card>
               );
             })
           }
 
-      </FlexParent>
+
       <form className="review" onSubmit={this.handleSubmit}>
         <h4>Write your review</h4>
-
-        <div className="rating">
-            <h5>Rating</h5>
-             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-        </div>
+         <h5>Rating</h5>
+            <fieldset className="rating">
+                <legend>Please rate:</legend>
+                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!" onClick={() => this.handleChangeRating(5)}>5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good" onClick={() => this.handleChangeRating(4)}>4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh" onClick={() => this.handleChangeRating(3)}>3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad" onClick={() => this.handleChangeRating(2)}>2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time" onClick={() => this.handleChangeRating(1)}>1 star</label>
+            </fieldset>
           <div className="form-group">
             <textarea cols="50" rows="6" name="comment" onChange={this.handleChangeContent}></textarea>
           </div>
@@ -92,17 +104,21 @@ console.log("riviews", this.props.reviews);
 
 // export default Review;
 
+//  <div className="rating"  >
 
-const mapStateToProps = ({riviews, user}) => ({riviews, user});
+//              <span onClick={() => this.handleChangeRating(5)}>☆</span><span onClick={() => this.handleChangeRating(4)}>☆</span><span onClick={() => this.handleChangeRating(3)}>☆</span><span onClick={() => this.handleChangeRating(2)}>☆</span><span onClick={() => this.handleChangeRating(1)}>☆</span>
+//         </div>
+const mapStateToProps = ({reviews, user}) => ({reviews, user});
 
 const mapDispatchToProps = (dispatch) => {
   return {
 loadAllReviews ()
  {
+     console.log("LOAD")
       dispatch(fetchAllReviews());
     },
    addNewReview(review, userId){
-      console.log("order", review);
+      console.log("review", review);
       dispatch(addNewReview(review, userId));
 
   }

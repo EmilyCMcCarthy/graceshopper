@@ -2,12 +2,32 @@ const express = require('express');
 const router = express.Router();
 const models = require('../db/models');
 const Review = models.Review;
+const User = models.User;
 
+// router.get('/', (req, res, next) => {
+//  Review.findAll({})
+//   .then(review => res.send(review))
+//   .catch(next);
+// });
 
-router.get('/', (req, res, next) => {
- Review.findAll({})
-  .then(review => res.send(review))
-  .catch(next);
+router.get('/', function (req, res, next) {
+    if (req.query.userId){
+        Review.findAll({where: {userId: req.query.userId}})
+            .then(review => {res.json(review);
+            })
+            .catch(next);
+    }
+    else {
+        Review.findAll({
+      include: {
+        model: User,
+        as: 'user'
+      }
+    })
+       .then(review => {res.json(review);
+            })
+       .catch(next);
+    }
 });
 
 
@@ -33,10 +53,9 @@ router.get('/:characterId/reviews', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-	Review.create({
-        content: req.body.content,
-        rating: req.body.rating,
-      })
+	Review.create(
+        req.body
+      )
 	.then(review => res.status(201).send(review))
     .catch(next);
 });
