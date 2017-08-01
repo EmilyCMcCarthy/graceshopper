@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, OrderItems} = require('../db/models');
+const {User, Order, OrderItems, Character} = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -53,7 +53,7 @@ router.post('/:userId/orders/current', (req, res, next) => {
        })
        .then((orderItem) => {
          if(orderItem !== null){
-           return OrderItems.update({
+          OrderItems.update({
              quantity: req.body.quantity + orderItem.quantity,
              subtotal: req.body.subTotal + orderItem.subtotal
            },
@@ -64,24 +64,48 @@ router.post('/:userId/orders/current', (req, res, next) => {
             },
             returning: true,
             plain: true
-          });
+          })
+          .then(updatedItem => res.send(updatedItem));
          }
-         else{
-           return OrderItems.create({
+         else {
+           OrderItems.create({
              characterId: req.body.characterId,
              quantity: req.body.quantity,
              subtotal: req.body.subTotal,
              orderId: order.id
            })
+          .then(createdOrderItem => res.send(createdOrderItem));
          }
        })
-    })
-    .then( orderItem => {
-      res.send(orderItem);
     })
     .catch(next)
 })
 
+
+/*
+Get all user orderItems(Cart Items)
+*/
+router.get('/orders/', function (req, res, next) {
+    Order.findOne(
+      {
+        where:{
+          status: 'pending',
+          userId: req.user.id
+        }
+    })
+    .then( order => {
+        return OrderItems.findAll(
+          {   where: {
+              orderId: order.id
+            },
+            include: [{ all: true }]
+          })
+      })
+    .then(orderItems => {
+      res.send(orderItems)
+    })
+    .catch(next);
+});
 
 /*
 when checkout is clicked

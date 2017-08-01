@@ -30,6 +30,7 @@ Review.belongsTo(User);
 Review.belongsTo(Character);
 Character.belongsToMany(Category, { through: ProductCategory})
 Category.hasMany(Character)
+OrderItems.belongsTo(Character)
 
 module.exports = {
   User,

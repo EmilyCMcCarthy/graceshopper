@@ -3,6 +3,9 @@ module.exports = router;
 
 router.use('/users', require('./users'));
 router.use('/characters', require('./characters'));
+router.use('/movie', require('./movie'));
+router.use('/admin', require('./admin'));
+
 router.use('/orders', require('./orders'));
 router.use('/reviews', require('./review'));
 

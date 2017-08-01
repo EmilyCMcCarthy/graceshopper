@@ -4,8 +4,10 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, AllCharacters, SingleCharacter, Review } from './components'
-import { me, fetchCharacters, fetchGuestOrder } from './store';
+
+import {Main, Login, Signup, AllCharacters, SingleCharacter, Cart, Checkout, Review} from './components'
+import {me, fetchCharacters} from './store';
+
 
 
 /**
@@ -33,6 +35,10 @@ class Routes extends Component {
             <Route exact path="/" component={AllCharacters} />
             <Route path="/characters/:characterId" component={SingleCharacter} />
             <Route exact path="/reviews" component={Review} />
+            <Route path="/checkout" component={Checkout} />
+            <Route exact path="/cart" component={Cart} />
+
+
             {
               isLoggedIn ?
                 <Switch>
@@ -56,7 +62,7 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
@@ -66,7 +72,6 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me());
       dispatch(fetchCharacters());
-      dispatch(fetchGuestOrder())
     }
   }
 }
