@@ -4,23 +4,28 @@ import { connect } from 'react-redux';
 import {fetchUserOrderItems, fetchGuestOrder} from '../store';
 
 class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
 
-    };
+  constructor (props){
+    super(props);
   }
 
   componentDidMount(){
-    console.log(this.props.user.id, "userId");
     this.props.loadCart(this.props.user.id);
   }
 
   render() {
-    console.log("Cart", this.props.cart);
      return (
       <div>
         <h1>Cart</h1>
+        {
+          this.props.cart.map((orderItem, i) => {
+            return (<li key ={i}>
+            Character: {orderItem.character && orderItem.character.name}
+             Qty: {orderItem.quantity}
+            Subtotal: {orderItem.subtotal}
+            </li>)
+          })
+        }
       </div>
     );
   }
@@ -32,7 +37,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loadCart(userId){
       userId
-      ? dispatch(fetchUserOrderItems(userId))
+      ? dispatch(fetchUserOrderItems())
       : dispatch(fetchGuestOrder());
     }
   }
