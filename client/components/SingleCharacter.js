@@ -24,7 +24,7 @@ class SingleCharacter extends Component {
 
   }
 
-  handleSubmit(evt){
+  handleSubmit(evt) {
     evt.preventDefault();
     const character = this.props.singleCharacter
     const order = {
@@ -39,8 +39,8 @@ class SingleCharacter extends Component {
 
   handleQuantity(evt) {
 
-    if(evt.target.name === "increase"){
-     this.setState({quantity: ++this.state.quantity});
+    if (evt.target.name === "increase") {
+      this.setState({ quantity: ++this.state.quantity });
     } else {
       this.setState({ quantity: --this.state.quantity });
     }
@@ -56,39 +56,45 @@ class SingleCharacter extends Component {
   render() {
     const character = this.props.singleCharacter;
     return (
-      <FlexParent center>
+      <div>
+        <FlexParent center>
 
-        <CharacterImg fullsize src={character.imageUrl} alt="image" />
+          <CharacterImg fullsize src={character.imageUrl} alt="image" />
 
-        <CharacterDetails>
-          <CharacterTitle>{character.name}</CharacterTitle>
-          <CharacterTitle secondary>Price: ${character.price}.00 </CharacterTitle>
+          <CharacterDetails>
+            <CharacterTitle>{character.name}</CharacterTitle>
+            <CharacterTitle secondary>Price: ${character.price}.00 </CharacterTitle>
 
-          <h4 className="media-heading">{character.description}</h4>
-          <QtyButton className="btn btn-default btn-xs" name="decrease" onClick={this.handleQuantity} disabled={this.state.decreaseEnabled} > - </QtyButton>
-          <Qty>
-            Qty: ({this.state.quantity}) 30min portal{this.state.quantity !== 1 ? 's' : '  '}
-          </Qty>
-          <QtyButton className="btn btn-default btn-xs" name="increase" onClick={this.handleQuantity} disabled={this.state.increaseEnabled} > + </QtyButton>
+            <h4 className="media-heading">{character.description}</h4>
+            <QtyButton className="btn btn-default btn-xs" name="decrease" onClick={this.handleQuantity} disabled={this.state.decreaseEnabled} > - </QtyButton>
+            <Qty>
+              Qty: ({this.state.quantity}) 30min portal{this.state.quantity !== 1 ? 's' : '  '}
+            </Qty>
+            <QtyButton className="btn btn-default btn-xs" name="increase" onClick={this.handleQuantity} disabled={this.state.increaseEnabled} > + </QtyButton>
 
 
-          <QtyButton block className="btn btn-default btn-xs" type="submit" name="AddToCart" onClick={this.handleSubmit}>Add to Cart</QtyButton>
+            <QtyButton block className="btn btn-default btn-xs" type="submit" name="AddToCart" onClick={this.handleSubmit}>Add to Cart</QtyButton>
 
-        </CharacterDetails>
-      </FlexParent >
+          </CharacterDetails>
+        </FlexParent >
+        <FlexParent>
+          <Review reviews={this.props.reviews} characterId={character.id} />
+
+        </FlexParent>
+      </div>
     );
   }
 }
 /* -----------------    CONTAINER     ------------------ */
 
-const mapStateToProps = ({singleCharacter, user, guestCart}) => ({singleCharacter, user, guestCart});
+const mapStateToProps = ({ singleCharacter, user, guestCart }) => ({ singleCharacter, user, guestCart });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadSingleCharacter(characterId) {
       dispatch(fetchCharacter(characterId));
     },
-    addOrder(order, userId){
+    addOrder(order, userId) {
       dispatch(addOrder(order, userId));
     },
     addGuestOrder(order) {
