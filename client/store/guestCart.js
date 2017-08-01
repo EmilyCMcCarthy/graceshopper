@@ -11,7 +11,7 @@ const FETCH_GUEST_ORDERS = 'FETCH_GUEST_ORDERS';
 /* ------------   ACTION CREATORS     ------------------ */
 
 const set = orderItem => ({ type: SET_GUEST_ORDER, orderItem });
-const fetch = () => ({ type: FETCH_GUEST_ORDERS });
+const fetch = (orderItems) => ({ type: FETCH_GUEST_ORDERS, orderItems });
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -20,7 +20,7 @@ export default function reducer (orderItems = [], action) {
     case SET_GUEST_ORDER:
       return [...orderItems, ...action.orderItem];
     case FETCH_GUEST_ORDERS:
-    return orderItems;
+      return action.orderItems;
     default:
       return orderItems;
   }
@@ -30,7 +30,7 @@ export default function reducer (orderItems = [], action) {
 
 export const addGuestOrder = (order) => dispatch => {
 
-      let allOrders = localStorage.getItem('orderItems');
+    let allOrders = localStorage.getItem('orderItems');
       allOrders = JSON.parse(localStorage.getItem('orderItems'));
 
     if(allOrders){
@@ -46,5 +46,6 @@ export const addGuestOrder = (order) => dispatch => {
   }
 
 export const fetchGuestOrder = () => dispatch => {
-dispatch(fetch())
+    let allOrders = JSON.parse(localStorage.getItem('orderItems'));
+    dispatch(fetch(allOrders));
 }

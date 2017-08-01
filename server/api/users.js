@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, OrderItems} = require('../db/models');
+const {User, Order, OrderItems, Character} = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -85,26 +85,26 @@ router.post('/:userId/orders/current', (req, res, next) => {
 /*
 Get all user orderItems(Cart Items)
 */
-router.get('/:userId/orders/', function (req, res, next) {
-  Order.findOne(
-    {
-      where:{
-        status: 'pending',
-        userId: req.params.userId
-      }
-  })
-  .then( order => {
-    return OrderItems.findAll({
-      where: {
-        orderId: order.id
-      }
+router.get('/orders/', function (req, res, next) {
+    Order.findOne(
+      {
+        where:{
+          status: 'pending',
+          userId: req.user.id
+        }
     })
-  })
-  .then(orderItems => {
-    console.log("user order items: ", orderItems);
-    res.send(orderItems)
-  })
-  .catch(next);
+    .then( order => {
+        return OrderItems.findAll(
+          {   where: {
+              orderId: order.id
+            },
+            include: [{ all: true }]
+          })
+      })
+    .then(orderItems => {
+      res.send(orderItems)
+    })
+    .catch(next);
 });
 
 /*
