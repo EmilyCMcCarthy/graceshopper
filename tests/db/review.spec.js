@@ -18,7 +18,7 @@ describe('Review Model Tests', () => {
     describe('Sequelize models', function () {
 
         describe('Review Model', () => {
-             var ReviewData = {content: "Be Dumbledore.jdjdjjkdjkjkljklljjjjjljljlkjlrffkkldfkl;kdfkl;dkdkdkldkldfkljfjklfjkjklfjkfdjkdfjkdfjdfjkdfjkdfjkdfjkljkdfjkldfdffddfdfdfdffdfddfjjdfdfhhjdhjdfhdfjdhjhdjfhjdfhfdhdfhfd"
+             var ReviewData = {content: "Be Dumbledore."
             };
 
             it('has the expected schema definition', () => {
