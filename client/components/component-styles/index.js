@@ -10,7 +10,7 @@ export const Header = styled.div`
  justify-content: space-between;
  background-image: url('/ep_naturalblack.png');
  width: 100vw;
- box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.75);
+ box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
 `
 export const Title = styled.h1`
   font-size: ${props => props.secondary ? '25px' : '35px'};
@@ -41,7 +41,7 @@ export const Card = styled.div`
   height: ${props => props.login ? '250px' : '325px'};
   padding: ${props => props.login ? '20px' : '0px'};
   margin: ${props => props.login ? '75px' : '20px'};
-  box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
 `
 export const FlexParent = styled.div`
   display: flex;
@@ -53,6 +53,12 @@ export const CharacterImg = styled.img`
   width: ${props => props.fullsize ? '425px' : '225px'};
   height: ${props => props.fullsize ? '500px' : '275px'};
   margin: ${props => props.fullsize ? '40px' : '0px'};
+`
+export const CharacterImgCart = styled.img`
+  width: 60px;
+  height: 70px;
+  padding-top: 7px;
+  margin: 10px;
 `
 export const CharacterDetails = styled.div`
   padding: 40px;
@@ -92,4 +98,27 @@ export const CardText = styled.div`
 
 export const GoogleImg = styled.img`
 padding: 6px 18px;
+`
+export const CartItem = styled.div`
+padding: 10px;
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+margin: 10px;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
+`
+export const ItemDetail = styled.p`
+display: flex;
+flex-direction: column;
+padding: 5px;
+`
+export const NormalLink = styled(Link) `
+padding: 4px;
+color: black;
+    &:hover{
+    color: white;
+    background: #0E121B;
+  }
+cursor: pointer;
+text-decoration: underline;
 `

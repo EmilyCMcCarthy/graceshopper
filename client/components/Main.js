@@ -23,7 +23,7 @@ const Main = (props) => {
     <Wrapper>
       <Header>
         <Title>
-          OUR STORE
+          INTERPERSONAL
       </Title>
         <Menu>
           {
