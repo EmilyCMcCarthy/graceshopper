@@ -7,7 +7,6 @@ const AllCharacters = ({ allCharacters }) => {
   return (
     <FlexParent>
       <Title secondary>BROWSE CHARACTERS</Title>
-
       <FlexParent>
         {
           allCharacters.map(character => {

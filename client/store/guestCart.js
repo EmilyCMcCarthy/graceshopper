@@ -30,8 +30,7 @@ export default function reducer (orderItems = [], action) {
 
 export const addGuestOrder = (order) => dispatch => {
 
-    let allOrders = localStorage.getItem('orderItems');
-      allOrders = JSON.parse(localStorage.getItem('orderItems'));
+    let allOrders = JSON.parse(localStorage.getItem('orderItems'));
 
     if(allOrders){
       localStorage.setItem('orderItems', JSON.stringify([allOrders, order]));

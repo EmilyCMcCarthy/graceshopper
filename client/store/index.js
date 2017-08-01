@@ -5,10 +5,10 @@ import user from './user';
 import allCharacters from './allCharacters';
 import singleCharacter from './singleCharacter';
 import cart from './cart';
+import reviews from './reviews';
 import guestCart from './guestCart';
 import allCategories from './allCategories';
 import singleCategory from './singleCategory';
-import reviews from './reviews';
 
 const reducer = combineReducers({user, allCharacters, singleCharacter, cart, guestCart, reviews});
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}));
