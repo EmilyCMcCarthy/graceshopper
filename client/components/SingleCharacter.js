@@ -39,8 +39,8 @@ class SingleCharacter extends Component {
 
   handleQuantity(evt) {
 
-    if (evt.target.name === "increase") {
-      this.setState({ quantity: ++this.state.quantity });
+    if(evt.target.name === "increase"){
+     this.setState({quantity: ++this.state.quantity});
     } else {
       this.setState({ quantity: --this.state.quantity });
     }
