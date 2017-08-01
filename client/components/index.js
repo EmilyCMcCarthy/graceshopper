@@ -10,3 +10,4 @@ export {default as AllCharacters} from './AllCharacters';
 export {default as SingleCharacter} from './SingleCharacter';
 export {default as Review} from './Review';
 export {default as Cart} from './Cart';
+export {default as Checkout} from './Checkout';

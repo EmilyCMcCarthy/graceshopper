@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, AllCharacters, SingleCharacter, Review,  Cart } from './components'
+import { Main, Login, Signup, UserHome, AllCharacters, SingleCharacter, Review,  Cart, Checkout} from './components'
 import { me, fetchCharacters, fetchGuestOrder } from './store';
 
 
@@ -35,7 +35,7 @@ class Routes extends Component {
             <Route path="/characters/:characterId" component={SingleCharacter} />
             <Route exact path="/reviews" component={Review} />
             <Route path="/cart" component={Cart} />
-
+             <Route path="/checkout" component={Checkout} />
             {
               isLoggedIn ?
                 <Switch>
