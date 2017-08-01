@@ -11,7 +11,7 @@ const FETCH_GUEST_ORDERS = 'FETCH_GUEST_ORDERS';
 /* ------------   ACTION CREATORS     ------------------ */
 
 const set = orderItem => ({ type: SET_GUEST_ORDER, orderItem });
-const fetch = () => ({ type: FETCH_GUEST_ORDERS });
+const fetch = (orderItems) => ({ type: FETCH_GUEST_ORDERS, orderItems });
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -20,7 +20,7 @@ export default function reducer (orderItems = [], action) {
     case SET_GUEST_ORDER:
       return [...orderItems, ...action.orderItem];
     case FETCH_GUEST_ORDERS:
-    return orderItems;
+      return action.orderItems;
     default:
       return orderItems;
   }
@@ -30,22 +30,21 @@ export default function reducer (orderItems = [], action) {
 
 export const addGuestOrder = (order) => dispatch => {
 
-      let allOrders = localStorage.getItem('orders');
-      allOrders = JSON.parse(localStorage.getItem('orders'));
-      console.log(allOrders, typeof (allOrders));
+    let allOrders = JSON.parse(localStorage.getItem('orderItems'));
 
     if(allOrders){
-      localStorage.setItem('orders', JSON.stringify([allOrders, order]));
-      allOrders = JSON.parse(localStorage.getItem('orders'));
+      localStorage.setItem('orderItems', JSON.stringify([allOrders, order]));
+      allOrders = JSON.parse(localStorage.getItem('orderItems'));
       dispatch(set(allOrders));
     }
     else{
-      localStorage.setItem('orders', JSON.stringify(order));
+      localStorage.setItem('orderItems', JSON.stringify(order));
       dispatch(set([order]));
     }
 
   }
 
 export const fetchGuestOrder = () => dispatch => {
-dispatch(fetch())
+    let allOrders = JSON.parse(localStorage.getItem('orderItems'));
+    dispatch(fetch(allOrders));
 }
