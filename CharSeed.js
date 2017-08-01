@@ -4,42 +4,43 @@ var db = require('./server/db');
 var Character = require('./server/db/models/character');
 var Bluebird = require('bluebird')
 
+// EI: don't forget to update character price levels
 var characters = [
 
     {
         name: "Albus Dumbledore",
-        price: "$$$",
-        imageUrl: "./characters/albus.jpg",
+        price: 1000,
+        imageUrl: "/characters/albus.jpg",
         description: "Be Dumbledore. Live in the magical world of Harry Potter... Be the headmaster at Hogwarts",
-        inventory: "1"
+        inventory: 10
     },
     {
         name: "Wonder Woman",
-        price: "$$$$",
+        price: 2000,
         imageUrl: "/characters/ww.jpg",
         description: "Be Wonder Woman. Super Awesome",
-        inventory: "3"
+        inventory: 3
     },
     {
         name: "Frodo Baggins",
-        price: "$$",
+        price: 400,
         imageUrl: "/characters/frodo.jpg",
         description: "Live in the houses with the circle doors. Protect the world. Take the One ring to be destroyed?",
-        inventory: "14"
+        inventory: 14
     },
     {
         name: "Hermione Granger",
-        price: "$$$",
+        price: 6000,
         imageUrl: "/characters/hermione.jpg",
         description: "The brightest witch of her Time. Enjoy the friendship of Ron and Harry",
-        inventory: "17"
+        inventory: 17
     },
     {
         name: "Luke Skywalker",
-        price: "$",
+        price: 3000,
         imageUrl: "/characters/luke_sky.jpg",
         description: "The force will be with you if you choose Luke Skywalker",
-        inventory: "7"
+        inventory: 7
     }
 
 
@@ -64,8 +65,4 @@ db.sync({ force: true })
         db.close();
         console.log('connection to the database closed!')
     })
-
-
-
-
 

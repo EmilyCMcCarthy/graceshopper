@@ -2,7 +2,9 @@
 var Sequelize = require('sequelize');
 var db = require('../db');
 
-module.exports = db.define('character', {
+
+
+const Character = db.define('character', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -20,9 +22,7 @@ module.exports = db.define('character', {
     imageUrl: {
         type: Sequelize.STRING, //Sequelize.ARRAY(Sequelize.STRING)
         allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+        defaultValue: 'No Image'
     },
     description: {
         type: Sequelize.TEXT,
@@ -31,6 +31,9 @@ module.exports = db.define('character', {
             notEmpty: true
         }
     },
+    //  status: {
+    //     type: Sequelize.ENUM('available', 'unavailable')
+    // },
     inventory: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -38,18 +41,22 @@ module.exports = db.define('character', {
             notEmpty: true
         }
     }
-    }, {
-     instanceMethods: {
-        decreaseInventory: function(num){
-            if (num > this.inventory){
-                throw new Error('Sorry, we have only' + this.inventory + 'at this moment' );
+    }, {});
+
+module.exports = Character;
+
+Character.prototype.decreaseInventory = function(num) {
+    if (num > this.inventory){
+                return new Error('Sorry, we have only' + this.inventory + 'at this moment' );
             }
-            else {
+    else {
                 this.inventory = this.inventory - num;
+                return this.inventory;
             }
-            return this.inventory;
-        }
-    }
 
-});
+};
 
+Character.prototype.increaseInventory = function(num) {
+    this.inventory = this.inventory + num;
+    return this.inventory;
+};

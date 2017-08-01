@@ -4,8 +4,9 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, AllCharacters, SingleCharacter} from './components'
-import {me, fetchCharacters} from './store';
+import { Main, Login, Signup, UserHome, AllCharacters, SingleCharacter, Review } from './components'
+import { me, fetchCharacters, fetchGuestOrder } from './store';
+
 
 /**
  * COMPONENT
@@ -31,12 +32,12 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route exact path="/" component={AllCharacters} />
             <Route path="/characters/:characterId" component={SingleCharacter} />
-
+            <Route exact path="/reviews" component={Review} />
             {
               isLoggedIn ?
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
+                  <Route path="/home" component={AllCharacters} />
                 </Switch> : null
             }
             {/* Displays our Login component as a fallback */}
@@ -62,10 +63,10 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
 
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me());
       dispatch(fetchCharacters());
-
+      dispatch(fetchGuestOrder())
     }
   }
 }
