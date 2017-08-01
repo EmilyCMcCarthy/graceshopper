@@ -78,7 +78,7 @@ class SingleCharacter extends Component {
           </CharacterDetails>
         </FlexParent >
         <FlexParent>
-          <Review reviews={this.props.reviews} characterId={character.id} />
+          {/* <Review reviews={this.props.reviews} characterId={character.id} /> */}
 
         </FlexParent>
       </div>
