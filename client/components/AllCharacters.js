@@ -15,7 +15,6 @@ class AllCharacters extends Component {
   }
      handleChange (evt) {
     const value = evt.target.value;
-    console.log(value)
     this.setState({
       inputValue: value
     });
@@ -23,8 +22,6 @@ class AllCharacters extends Component {
 
   render() {
     const inputValue = this.state.inputValue;
-    // const allCharacters = this.props.allCharacters;
-    console.log("CHARACTERS", this.props);
     const filteredCharacters = this.props.allCharacters.filter(character =>
       character.name.toLowerCase().match(inputValue.toLowerCase()));
 
@@ -32,15 +29,14 @@ class AllCharacters extends Component {
       <FlexParent>
         <Title secondary>BROWSE CHARACTERS</Title>
          <form className='form-group' style={{marginTop: '20px'}}>
-    Search
-      <input
-        onChange={this.handleChange}
-        value={inputValue}
-        className='form-control'
-        placeholder="Enter artist name"
-      />
-
-    </form>
+          Search
+            <input
+              onChange={this.handleChange}
+              value={inputValue}
+              className='form-control'
+              placeholder="Enter artist name"
+            />
+        </form>
         <FlexParent>
           {
             filteredCharacters.map(character => {
