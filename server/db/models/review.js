@@ -8,7 +8,7 @@ const Review = db.define('review', {
     validate: {
       isTooLong()
         {
-         if (this.content.length > 20) {
+         if (this.content.length > 200) {
            throw new Error('Only 200 characters allowed!');
          }
        }
