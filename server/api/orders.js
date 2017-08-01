@@ -22,11 +22,13 @@ router.put('/:orderId/purchase', (req, res, next) => {
     total: req.body.total
   }, {
     where: {
-      userId: req.params.userId,
-      returning: true
-    }
+      id: req.params.orderId,
+    },
+    returning: true
   })
-  .then( result => res.send(result[1].dataValues))
+  .then( result => {
+    res.send("purchased")
+  } )
 })
 
 module.exports = router;
