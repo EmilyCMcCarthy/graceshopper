@@ -34,7 +34,7 @@ class AllCharacters extends Component {
               onChange={this.handleChange}
               value={inputValue}
               className='form-control'
-              placeholder="Enter artist name"
+              placeholder="Enter Character name"
             />
         </form>
         <FlexParent>

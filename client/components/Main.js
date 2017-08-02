@@ -32,7 +32,6 @@ const Main = (props) => {
                 {/* The navbar will show these links after you log in */}
                 <StyledLink to="/">Home</StyledLink>
                 <StyledLink to="/cart">Cart</StyledLink>
-                <StyledLink to="/search">Search</StyledLink>
                 <StyledLink to="/" onClick={handleClick}>Logout</StyledLink>
               </div> :
               <div>
@@ -41,7 +40,7 @@ const Main = (props) => {
                 <StyledLink to="/login">Login</StyledLink>
                 <StyledLink to="/signup">Sign Up</StyledLink>
                 <StyledLink to="/cart">Cart</StyledLink>
-                <StyledLink to="/search">Search</StyledLink>
+               
               </div>
           }
         </Menu>

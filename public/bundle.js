@@ -10718,7 +10718,11 @@ var SingleCharacter = function (_Component) {
             )
           )
         ),
-        _react2.default.createElement(_componentStyles.FlexParent, null)
+        _react2.default.createElement(
+          _componentStyles.FlexParent,
+          null,
+          _react2.default.createElement(_Review2.default, { reviews: this.props.reviews, characterId: character.id })
+        )
       );
     }
   }]);
@@ -19023,11 +19027,6 @@ var Main = function Main(props) {
           ),
           _react2.default.createElement(
             _componentStyles.StyledLink,
-            { to: '/search' },
-            'Search'
-          ),
-          _react2.default.createElement(
-            _componentStyles.StyledLink,
             { to: '/', onClick: handleClick },
             'Logout'
           )
@@ -19053,11 +19052,6 @@ var Main = function Main(props) {
             _componentStyles.StyledLink,
             { to: '/cart' },
             'Cart'
-          ),
-          _react2.default.createElement(
-            _componentStyles.StyledLink,
-            { to: '/search' },
-            'Search'
           )
         )
       )
