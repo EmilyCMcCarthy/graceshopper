@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const OrderItems = require('./OrderItems')
+const OrderItems = require('./orderItems')
 
 // Rename this model to be Order/'order'
 const Order = db.define('order', {
